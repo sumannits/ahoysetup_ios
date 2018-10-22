@@ -1,0 +1,94 @@
+<!--
+  Generated template for the EventdetailsPage page.
+
+  See http://ionicframework.com/docs/components/#navigation for more info on
+  Ionic pages and navigation.
+-->
+<ion-header>
+    <ion-navbar>
+      <!-- <ion-buttons start>
+        <button ion-button icon-only>
+          <ion-icon name="md-arrow-back"></ion-icon>
+        </button>
+      </ion-buttons> -->
+      <ion-title class="text-left">Events</ion-title>
+    </ion-navbar>
+  </ion-header>
+
+
+<ion-content padding class="content">
+    <ion-card class="mr-0">
+        <div class="group-up-area mrg-up">
+          <ion-item>
+              <img alt="" style="max-height: 207px;" [src]="groupDetails?.image_url">
+          </ion-item>
+          <ion-item class="d-flex">
+              <p>{{ groupDetails?.countevent }} people joined this event </p>
+              <button ion-button item-end class="pink-btn" *ngIf="groupDetails?.ismember == false && groupDetails?.user_id != userData.id" (click)="join(groupDetails?.id)">join</button>
+              <button ion-button item-end class="pink-btn" *ngIf="groupDetails?.ismember == true && groupDetails?.user_id != userData.id" (click)="leave(groupDetails?.id)">leave</button>
+            </ion-item>
+            <ion-item class="top-date">
+                <ion-label style="min-width:170px;"><ion-icon name="ios-pin"></ion-icon>{{ groupDetails?.location }}    </ion-label>
+                <ion-label text-right><ion-icon name="ios-calendar-outline"></ion-icon>{{ groupDetails?.event_date | date:'LLL dd ,y'}}</ion-label>
+              </ion-item>
+              <p class="txt">{{ groupDetails?.description }}</p>
+            <ion-list class="chat-detail">
+              <ion-item>
+                <ng-container *ngIf="allCommentList?.length >0">
+                  <div class="chating-area" *ngFor="let chat of allCommentList; let i=index">
+                    <ion-grid style="padding:0 0 5px !important;">
+                      <ion-row>
+                        <ion-col col-2 class="pl-0 pr-0">
+                          <div class="chating-area-left">
+                            <img alt="" src="{{ this.getimageURI+ 'users/'+ chat?.customer.image }}">
+                          </div>
+                        </ion-col>
+                        <ion-col col-10 class="pl-0 pr-0">
+                          <div class="chating-rt-area">
+                            <div class="chating-area-right">
+                              <h3>{{ chat?.customer.name }}</h3>
+                              <p> {{ chat?.message}}</p>
+                            </div>
+                            <button *ngIf="!chat.is_like" ion-button clear class="like-re" (click)="likeComment(chat, i)">Like</button>
+                            <button *ngIf="chat.is_like" ion-button clear class="like-re" (click)="unlikeComment(chat, i)">Unlike</button>
+                            <button ion-button clear class="like-re">Reply</button>
+        
+        
+                          </div>
+                        </ion-col>
+                      </ion-row>
+                    </ion-grid>
+                  </div>
+                </ng-container>
+                <ng-container *ngIf="allCommentList?.length == 0">
+                    <div class="chating-area">
+                      Sorry! No comments found.
+                    </div>
+                </ng-container>
+                <div class="chat-send">
+      
+                  <div class="chat-input-area">
+                    <input type="text" [(ngModel)]="message" placeholder="Write your comment">
+                  </div>  
+      
+                  <button ion-button type="submit" round class="send" (click)="sendMsg()">
+                    <ion-icon ios="ios-send" md="md-send"></ion-icon>
+                  </button>
+      
+      
+                </div>
+              </ion-item>
+            </ion-list>
+          </div>
+    </ion-card>
+</ion-content>
+
+<!-- <ion-footer class="footer-tab-custom">
+    <ul>
+      <li (click)="home()" class="active"><img src="assets/imgs/home-active.png"><span>Home</span></li>
+      <li class=""><img src="assets/imgs/group.png"><span>Group</span></li>
+      <li class=""><img src="assets/imgs/user.png"><span>User</span></li>
+      <li class=""><img src="assets/imgs/post.png"><span>Post</span></li>
+      <li class=""><img src="assets/imgs/event.png"><span>Events</span></li>
+    </ul>
+</ion-footer> -->

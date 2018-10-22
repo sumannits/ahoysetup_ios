@@ -1,0 +1,57 @@
+<!--
+  Generated template for the EventserachPage page.
+
+  See http://ionicframework.com/docs/components/#navigation for more info on
+  Ionic pages and navigation.
+-->
+<ion-header>
+    <ion-navbar no-border-bottom>
+      <ion-buttons start>
+        <button ion-button icon-only>
+          <!-- <ion-icon ios="ios-search" md="md-search"></ion-icon> -->
+        </button>
+      </ion-buttons>
+      <ion-title>
+        <ion-searchbar [(ngModel)]="search"
+        [showCancelButton]="shouldShowCancel"
+        (ionInput)="getMyGroupList()"></ion-searchbar>
+      </ion-title>
+    </ion-navbar>
+  </ion-header>
+  
+  <ion-content padding>
+      <ion-item class="range-holder">
+        <ion-range min="0" max="100" pin="true" [(ngModel)]="contrast">
+          <div range-left small>0</div>
+          <div range-right>100</div>
+        </ion-range>
+      </ion-item>
+      <div>
+        <ion-list>
+          <ion-card class="chat-list-card danger-bg" *ngFor="let mygrp of allMyGroup">
+            <div class="image-holder" (click)="gotoGroupDetails(mygrp.id)">
+              <img [src]="mygrp.image_url" alt="">
+            </div>
+            <div class="info-holder">
+                <h2 (click)="gotoGroupDetails(mygrp.id)">{{mygrp.name}}</h2>
+                <div class="round" *ngIf="mygrp.user_id == userData.id" (click)="gotoEditGroup(mygrp.id)">
+                  <ion-icon ios="ios-settings" md="md-settings"></ion-icon>
+                </div>
+                <div class="round" *ngIf="mygrp.ismember == true" (click)="gotoGroupDetails(mygrp.id)">
+                    <ion-icon name="ios-calendar-outline"></ion-icon>
+                </div>
+                <div class="round" *ngIf="mygrp.ismember == false && mygrp.user_id != userData.id" (click)="join(mygrp.id)">
+                    <ion-icon ios="ios-add" md="md-add"></ion-icon>
+                </div>
+                <!-- <p><span><img src="assets/imgs/distance.png" alt=""></span>2km</p>               -->
+                <div class="d-flex">
+                  <ion-label><ion-icon ion-start name="ios-people-outline"></ion-icon>{{mygrp?.countgrp}} member </ion-label>
+  
+                  <ion-label>Event Date :{{mygrp.event_date | date:'LLL dd ,y'}}</ion-label>
+                </div>
+  
+            </div>
+          </ion-card>
+        </ion-list>
+      </div>
+  </ion-content>
