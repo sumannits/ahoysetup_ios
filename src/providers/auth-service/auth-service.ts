@@ -3,9 +3,9 @@ import {Headers, Http, Response, URLSearchParams  } from '@angular/http';
 import 'rxjs/add/operator/map';
 import { HttpClient } from '@angular/common/http';
 import { LoadingController } from 'ionic-angular';
- //let apiUrl = 'http://192.168.1.28:3000/api/';
+ let apiUrl = 'http://192.168.1.41:3000/api/';
  //let fileUrl = 'http://192.168.1.28/Loopback/colin_service/uploads/';
-let apiUrl = 'http://111.93.169.90:3006/api/';
+//let apiUrl = 'http://111.93.169.90:3006/api/';
 let fileUrl = 'http://111.93.169.90/team2/ahoy/service/uploads/'
 /*
   Generated class for the AuthServiceProvider provider.

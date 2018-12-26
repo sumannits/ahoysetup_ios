@@ -15,7 +15,10 @@
         <ion-segment-button value="chatlist">
           <ion-icon ios="ios-chatboxes" md="md-chatboxes"></ion-icon> Chat List
         </ion-segment-button>
-        <ion-segment-button (click)="goToEvents()">
+        <!-- <ion-segment-button (click)="goToEvents()">
+          <ion-icon ios="ios-add-circle" md="md-add-circle"></ion-icon> Event List
+        </ion-segment-button> -->
+        <ion-segment-button>
           <ion-icon ios="ios-add-circle" md="md-add-circle"></ion-icon> Event List
         </ion-segment-button>
       </ion-segment>
@@ -37,7 +40,8 @@
           <div class="inline-btn">            
               <button ion-button class="danger-btn" *ngIf="groupDetails?.ismember == false && groupDetails?.user_id != userData.id" (click)="join(groupDetails?.id)">Join</button>
               <button ion-button class="danger-btn" *ngIf="groupDetails?.ismember == true && groupDetails?.user_id != userData.id" (click)="leave(groupDetails?.id)">Leave</button>
-              <button ion-button class="danger-btn" (click)="cevent()">Create A Event</button>            
+              <!-- <button ion-button class="danger-btn" (click)="cevent()">Create A Event</button> -->
+              <button ion-button class="danger-btn">Create A Event</button>            
               <button ion-button class="danger-btn" *ngIf="groupDetails?.ismember == true || groupDetails?.user_id == userData.id" (click)="createChat()">
               <img src="assets/imgs/chat.png" class="chat" alt=""> Chat</button>
           </div>
